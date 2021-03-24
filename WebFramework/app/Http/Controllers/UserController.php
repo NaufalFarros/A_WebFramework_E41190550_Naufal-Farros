@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ManagementUserController extends Controller
+class UserController extends Controller
 {
     public function index(){
-        return "Hallo ini adalah method index, dalam controller management" ;
+        return view('User.index');
     }
     public function create(){
         return "Method ini digunakan untuk menambah data user" ;
@@ -21,6 +21,10 @@ class ManagementUserController extends Controller
     public function edit($id){
         return "Method ini untuk menampilkan form edit data id=".$id ;
     }
-  
-    
+    public function update(Request $request,$id){
+        return "Method ini digunakan untuk mengubah data user id=".$id ;
+    }
+    public function destroy($id){
+        return "Method ini digunakan untuk menghapus data user id=".$id ;
+    }
 }
