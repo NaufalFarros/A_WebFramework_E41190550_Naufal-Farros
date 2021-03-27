@@ -1,30 +1,111 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Student ;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(){
-        return view('User.index');
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        // $students = DB::table('students')->get();
+
+        $students = student::all();
+        // return view('User.index',['students' => $students]);
+        return view('User.index',compact('students'));
+        
     }
-    public function create(){
-        return "Method ini digunakan untuk menambah data user" ;
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('User.Create');
     }
-    public function store(Request $request){
-        return "Method ini digunakan untuk menciptakan method baru" ;
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // $student = new Student ;
+        // $student->nama = $request->Nama ;
+        // $student->nim = $request->Nim ;
+        // $student->prodi = $request->Prodi ;
+        // $student->save();
+        
+        
+        // menggunakan fillable
+        
+        // student::create([
+        //     'nama' => $request->Nama,
+        //     'nim' => $request->Nim,
+        //     'prodi' => $request->Prodi,
+        // ]);
+
+        student::create($request->all());
+
+        return redirect('/User');
+
     }
-    public function show($id){
-        return "Method ini diguanakan untuk menampilkan data dengan id=".$id ;
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+       
+        $students = student::find($id);
+
+        return view('User.Show', compact('students'));
+
     }
-    public function edit($id){
-        return "Method ini untuk menampilkan form edit data id=".$id ;
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
-    public function update(Request $request,$id){
-        return "Method ini digunakan untuk mengubah data user id=".$id ;
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
     }
-    public function destroy($id){
-        return "Method ini digunakan untuk menghapus data user id=".$id ;
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

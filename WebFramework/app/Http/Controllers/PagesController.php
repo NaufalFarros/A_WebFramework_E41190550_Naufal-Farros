@@ -10,9 +10,7 @@ class PagesController extends Controller
         return view('index') ;
         
     }
-    public function User(){
-        return view('User.index');
-    }
+  
     public function About(){
         return view('About');
     }

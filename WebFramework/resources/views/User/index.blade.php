@@ -5,16 +5,32 @@
 @section('container')
 <div class="container">
     <div class="row">
-      <div class="col-10">
+      <div class="col-7">
           <h1>Hello,</h1>
           <h3>Method ini digunakan untuk menampilkan Data </h3>
-    <button onclick="window.location='{{ url('/create')}}'" class="btn btn-primary" >Create</button>
-    <button class="btn btn-primary"> Store</button>
-    <button class="btn btn-primary"> Show</button>
-    <button class="btn btn-primary"> Edit</button>
-    <button class="btn btn-primary"> Update</button>
-    <button class="btn btn-primary"> Destroy</button>
+    {{-- <button onclick="window.location='{{ url('/create')}}'" class="btn btn-primary" >Create</button> --}}
+
+        <a href="/User/Create" class="btn btn-primary mb-3"> Tambah Data</a>
     
+
+
+    @foreach ($students as $std )
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center"> 
+            {{ $loop->iteration}} .
+            {{ $std->nama }}
+
+          <a href="/User/{{$std->id}}" class="badge badge-info">Detail</a>
+       
+        </li>
+
+    </ul>
+    @endforeach
+        
+   
+
+
+
       </div>
     </div>
   </div>
