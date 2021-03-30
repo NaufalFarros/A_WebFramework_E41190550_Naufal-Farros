@@ -12,7 +12,11 @@
 
         <a href="/User/Create" class="btn btn-primary mb-3"> Tambah Data</a>
     
-
+        @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
 
     @foreach ($students as $std )
     <ul class="list-group">

@@ -54,9 +54,16 @@ class UserController extends Controller
         //     'prodi' => $request->Prodi,
         // ]);
 
+        $request->validate([
+            'Nama' => 'required',
+            'Nim' => 'required|size:9',
+            'Prodi' => 'required'
+        ]);
+
+
         student::create($request->all());
 
-        return redirect('/User');
+        return redirect('/User')->with('status','Data Berhasil Di Tambahkan');
 
     }
 
