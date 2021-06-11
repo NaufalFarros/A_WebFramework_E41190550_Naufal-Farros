@@ -22,7 +22,12 @@
           <p class="card-text font-weight-bold">Prodi : {{$students->prodi}}</p>
           
           <button type="submit" class="btn btn-primary">Edit</button>
-          <button type="submit" class="btn btn-danger">Hapus</button>
+          <form action="{{$students->id}}" method="Post"  class="d-inline">
+              @method('delete')
+              @csrf
+         
+              <button type="submit" class="btn btn-danger">Hapus</button>
+          </form>
           <div class="text-right">
             <a href="/User" class="card-link"> << Kembali</a>
           </div>

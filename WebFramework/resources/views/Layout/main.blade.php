@@ -11,7 +11,7 @@
     <title> @yield('title')</title>
   </head>
   <body>
-    
+
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -23,15 +23,30 @@
             <li class="nav-item active">
               <a class="nav-link" href="{{ url('/')}}">Home <span class="sr-only">(current)</span></a>
             </li>
+            
+            @if (auth()->user()->role == 1)
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/About') }}">About</a>
             </li>
+            @endif
+            
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/User') }}">User</a>
             </li>
             
           </ul>
+
+            
+          
         </div>
+      
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-flex">
+              <button class="btn btn-primary" type="submit">
+                Logout
+              </button>
+              @csrf
+            </form>
         </div>
 </nav>
 

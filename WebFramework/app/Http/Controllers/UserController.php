@@ -11,11 +11,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+     public function __construct(){
+        $this->middleware('auth');
+     }
+     
     public function index()
     {
         // $students = DB::table('students')->get();
-
-        $students = student::all();
+        
+        $students = student::orderBy('nama','asc')->paginate(6);
         // return view('User.index',['students' => $students]);
         return view('User.index',compact('students'));
         
@@ -113,6 +119,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Student::destroy($id);
+        return redirect('/User')->with('delete','Data Berhasil Dihapus');
     }
+
+
+
+   
 }
